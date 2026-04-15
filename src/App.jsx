@@ -1,4 +1,8 @@
+// src/App.jsx
+
 import { useState } from 'react';
+import InputField from './components/InputField';
+import ResultCard from './components/ResultCard';
 
 // ==========================================
 // 1. Core Logic (計算処理)
@@ -86,46 +90,8 @@ const performCalculation = (baseStr, expStr) => {
   return { exact, exponential, digits };
 };
 
-
 // ==========================================
-// 2. UI Components (コンポーネント分割)
-// ==========================================
-
-const InputField = ({ id, label, value, onChange, onKeyDown, placeholder }) => (
-  <div className="flex flex-col gap-2">
-    <label htmlFor={id} className="text-sm font-bold text-slate-600">
-      {label}
-    </label>
-    <input
-      id={id}
-      type="text"
-      value={value}
-      onChange={onChange}
-      onKeyDown={onKeyDown}
-      placeholder={placeholder}
-      className="w-full px-4 py-3 rounded-xl border border-slate-300 bg-white focus:border-blue-500 focus:ring-4 focus:ring-blue-500/20 outline-none transition-all text-lg font-mono placeholder:text-slate-400 shadow-sm"
-    />
-  </div>
-);
-
-const ResultCard = ({ title, content, isExact }) => (
-  <div className="bg-slate-50 border border-slate-200 rounded-xl p-4 shadow-sm">
-    <h3 className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">{title}</h3>
-    <div 
-      className={`font-mono text-slate-800 ${
-        isExact 
-          ? "break-all whitespace-pre-wrap max-h-64 overflow-y-auto text-sm bg-white p-3 border border-slate-200 rounded-lg" 
-          : "text-lg font-semibold"
-      }`}
-    >
-      {content}
-    </div>
-  </div>
-);
-
-
-// ==========================================
-// 3. Main Application
+// 2. Main Application
 // ==========================================
 export default function App() {
   const [base, setBase] = useState("");
