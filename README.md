@@ -18,12 +18,15 @@
 
 ```text
 power-calculator/
-├── src/                    # 開発用ソースコード
+├── src/
 │   ├── main.jsx            # Reactのエントリポイント
-│   ├── App.jsx             # 画面全体のレイアウト・ロジック司令塔
-│   ├── components/         # UIコンポーネント
+│   ├── App.jsx             # 状態管理とコンポーネントの配置
+│   ├── components/
 │   │   ├── InputField.jsx  # 数値入力フィールド
-│   │   └── ResultCard.jsx  # 計算結果表示カード
+│   │   ├── ResultCard.jsx  # 計算結果表示カード
+│   │   └── ResultSection.jsx # 結果エリアの表示制御
+│   ├── utils/
+│   │   └── powerUtils.js   # 累乗計算の核心ロジック
 │   └── index.css           # Tailwind CSS v4 設定
 ├── docs/                   # ビルド成果物（GitHub Pages用）
 │   ├── index.html          # 公開用エントリポイント

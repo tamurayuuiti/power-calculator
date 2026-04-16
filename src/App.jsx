@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import InputField from './components/InputField';
-import ResultCard from './components/ResultCard';
+import ResultSection from './components/ResultSection';
 import { performCalculation } from './utils/powerUtils';
 
 export default function App() {
@@ -20,6 +20,7 @@ export default function App() {
     setResult(null);
     setIsCalculating(true);
 
+    // 計算によるUIフリーズを回避
     setTimeout(() => {
       try {
         const data = performCalculation(base, exponent);
@@ -47,7 +48,7 @@ export default function App() {
         <h1 className="text-4xl font-extrabold text-transparent bg-clip-text bg-linear-to-r from-blue-600 to-indigo-600 mb-3 tracking-tight">
           Power Calculator
         </h1>
-        <p className="text-slate-500 font-medium">BigIntを活用した高精度な累乗計算機</p>
+        <p className="text-slate-500 font-medium">高精度な累乗計算機</p>
       </div>
 
       {/* Main Card */}
@@ -90,40 +91,10 @@ export default function App() {
               "計算する"
             )}
           </button>
-
         </div>
 
-        {/* Results Section */}
-        {error && (
-          <div className="bg-red-50 border-t border-red-100 p-6">
-            <p className="text-red-600 font-bold flex items-center gap-2">
-              {error}
-            </p>
-          </div>
-        )}
-
-        {result && (
-          <div className="bg-slate-50 border-t border-slate-100 p-8 sm:p-10 flex flex-col gap-5">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-              <ResultCard 
-                title="概算値 (Exponential)" 
-                content={result.exponential} 
-              />
-              <ResultCard 
-                title="計算結果の桁数" 
-                content={`約 ${result.digits.toLocaleString()} 桁`} 
-              />
-            </div>
-            
-            {result.exact && (
-              <ResultCard 
-                title="正確な値 (Exact Result)" 
-                content={result.exact} 
-                isExact={true} 
-              />
-            )}
-          </div>
-        )}
+        {/* 抽出した結果表示セクション */}
+        <ResultSection result={result} error={error} />
         
       </div>
     </div>
